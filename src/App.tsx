@@ -7,9 +7,11 @@ export const queryClient = new QueryClient();
 
 const router = createRouter({
   routeTree,
+  basepath: window.location.pathname,
   defaultPreload: "intent",
   defaultPreloadStaleTime: 0,
   context: {
+    auth: undefined!,
     queryClient,
   },
 });

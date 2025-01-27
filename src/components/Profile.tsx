@@ -35,7 +35,7 @@ function getSocialLink(platform: string, username: string): string {
     telegram: `https://t.me/${username}`,
     linkedin: `https://linkedin.com/in/${username}`,
     twitter: `https://twitter.com/${username}`,
-    website: `https://${username}`
+    website: `https://${username}`,
   };
   return links[platform] || "#";
 }
@@ -46,7 +46,7 @@ function getSocialIcon(platform: string): string {
     telegram: "📞",
     linkedin: "💼",
     twitter: "🐦",
-    website: "🌐"
+    website: "🌐",
   };
   return icons[platform] || "🔗";
 }
@@ -65,9 +65,10 @@ export const Profile: React.FC<ProfileProps> = ({ accountId, profile }) => {
     <div
       className="margin-auto relative flex min-h-screen w-full flex-col items-center justify-center bg-cover bg-center py-16"
       style={{
-        backgroundImage: `url(${getImageUrl(profile.backgroundImage)})`
+        backgroundImage: `url(${getImageUrl(profile.backgroundImage)})`,
       }}
     >
+      <App />
       <div className="z-10 w-full max-w-2xl rounded-xl bg-white bg-opacity-95 p-8 text-center shadow-2xl backdrop-blur-sm lg:max-w-[1024px]">
         <div className="w-full">
           <img
@@ -94,7 +95,7 @@ export const Profile: React.FC<ProfileProps> = ({ accountId, profile }) => {
                 >
                   {getSocialIcon(platform)}
                 </a>
-              )
+              ),
             )}
           </div>
         </div>
@@ -102,3 +103,5 @@ export const Profile: React.FC<ProfileProps> = ({ accountId, profile }) => {
     </div>
   );
 };
+
+export default Profile;

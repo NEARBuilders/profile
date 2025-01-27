@@ -42,7 +42,7 @@ export default defineConfig({
       experiments: {
         federationRuntime: 'hoisted'
       },
-      shared: {
+      shared: { // we share these dependencies with the host, do not change
         'react': { singleton: true, eager: true, requiredVersion: '^18.0.0' },
         'react-dom': { singleton: true, eager: true, requiredVersion: '^18.0.0' },
         '@tanstack/react-router': { singleton: true, eager: true }

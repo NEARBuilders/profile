@@ -4,9 +4,10 @@ import { Profile } from "./components/Profile";
 import "./index.css";
 import { getProfile } from "./lib/social";
 
+/** Only for local testing and development */
 const render = async () => {
   const root = document.getElementById("root");
-  const accountId = "efiz.near"; // You might want to make this configurable
+  const accountId = "efiz.near"; // Example accountId
 
   try {
     const profile = await getProfile(accountId);

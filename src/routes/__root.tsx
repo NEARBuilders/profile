@@ -32,9 +32,8 @@ export const Route = createRootRouteWithContext<{
 function RootComponent() {
   return (
     <>
-      {/* <AuthDebugger /> */}
       <ThemeProvider defaultTheme="light" storageKey="profile-ui-theme">
-        {/* May not need Near Provider, and Jazz Provider maybe should be combined */}
+        {/* Add your providers here */}
         <Outlet />
         <React.Suspense>
           <TanStackRouterDevtools position="bottom-left" />
