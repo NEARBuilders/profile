@@ -1,6 +1,6 @@
-import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
-import { defineConfig } from '@rsbuild/core';
-import { pluginReact } from '@rsbuild/plugin-react';
+import { pluginModuleFederation } from "@module-federation/rsbuild-plugin";
+import { defineConfig } from "@rsbuild/core";
+import { pluginReact } from "@rsbuild/plugin-react";
 // import { TanStackRouterRspack } from '@tanstack/router-plugin/rspack';
 
 export default defineConfig({
@@ -9,7 +9,7 @@ export default defineConfig({
   },
   source: {
     entry: {
-      index: './src/index.tsx',
+      index: "./src/index.tsx",
     },
   },
   server: {
@@ -17,7 +17,7 @@ export default defineConfig({
   },
   output: {
     distPath: {
-      root: 'dist'
+      root: "dist",
     },
   },
   // tools: {
@@ -33,20 +33,24 @@ export default defineConfig({
   plugins: [
     pluginReact(),
     pluginModuleFederation({
-      name: 'profile',
-      filename: 'profile/remoteEntry.js',
+      name: "profile",
+      filename: "profile/remoteEntry.js",
       exposes: {
         // Expose the Profile component for module federation
-        './Profile': './src/components/Profile.tsx'
+        "./Profile": "./src/components/Profile.tsx",
       },
       experiments: {
-        federationRuntime: 'hoisted'
+        federationRuntime: "hoisted",
       },
       shared: {
-        'react': { singleton: true, eager: true, requiredVersion: '^18.0.0' },
-        'react-dom': { singleton: true, eager: true, requiredVersion: '^18.0.0' },
-        '@tanstack/react-router': { singleton: true, eager: true }
+        react: { singleton: true, eager: true, requiredVersion: "^18.0.0" },
+        "react-dom": {
+          singleton: true,
+          eager: true,
+          requiredVersion: "^18.0.0",
+        },
+        "@tanstack/react-router": { singleton: true, eager: true },
       },
-    })
-  ]
+    }),
+  ],
 });
