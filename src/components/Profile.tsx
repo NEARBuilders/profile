@@ -1,44 +1,16 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import "../index.css";
-
-type Image = {
-  url?: string;
-  ipfs_cid?: string;
-};
-
-type Profile = {
-  name?: string;
-  image?: Image;
-  backgroundImage?: Image;
-  description?: string;
-  linktree?: Record<string, string>;
-};
+import {
+  getImageUrl,
+  getSocialLink,
+  Profile as ProfileType,
+} from "../lib/social";
 
 type ProfileProps = {
   accountId: string;
-  profile: Profile | null;
+  profile: ProfileType | null;
 };
-
-const fallbackUrl =
-  "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm";
-
-const getImageUrl = (image: Image | undefined): string => {
-  if (image?.url) return image.url;
-  if (image?.ipfs_cid) return `https://ipfs.near.social/ipfs/${image.ipfs_cid}`;
-  return fallbackUrl;
-};
-
-function getSocialLink(platform: string, username: string): string {
-  const links: Record<string, string> = {
-    github: `https://github.com/${username}`,
-    telegram: `https://t.me/${username}`,
-    linkedin: `https://linkedin.com/in/${username}`,
-    twitter: `https://twitter.com/${username}`,
-    website: `https://${username}`
-  };
-  return links[platform] || "#";
-}
 
 function getSocialIcon(platform: string): string {
   const icons: Record<string, string> = {
@@ -46,7 +18,7 @@ function getSocialIcon(platform: string): string {
     telegram: "📞",
     linkedin: "💼",
     twitter: "🐦",
-    website: "🌐"
+    website: "🌐",
   };
   return icons[platform] || "🔗";
 }
@@ -65,7 +37,7 @@ export const Profile: React.FC<ProfileProps> = ({ accountId, profile }) => {
     <div
       className="margin-auto relative flex min-h-screen w-full flex-col items-center justify-center bg-cover bg-center py-16"
       style={{
-        backgroundImage: `url(${getImageUrl(profile.backgroundImage)})`
+        backgroundImage: `url(${getImageUrl(profile.backgroundImage)})`,
       }}
     >
       <div className="z-10 w-full max-w-2xl rounded-xl bg-white bg-opacity-95 p-8 text-center shadow-2xl backdrop-blur-sm lg:max-w-[1024px]">
@@ -94,7 +66,7 @@ export const Profile: React.FC<ProfileProps> = ({ accountId, profile }) => {
                 >
                   {getSocialIcon(platform)}
                 </a>
-              )
+              ),
             )}
           </div>
         </div>

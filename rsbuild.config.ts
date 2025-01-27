@@ -1,7 +1,7 @@
 import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
-import { TanStackRouterRspack } from '@tanstack/router-plugin/rspack';
+// import { TanStackRouterRspack } from '@tanstack/router-plugin/rspack';
 
 export default defineConfig({
   html: {
@@ -20,16 +20,16 @@ export default defineConfig({
       root: 'dist'
     },
   },
-  tools: {
-    rspack: {
-      plugins: [
-        TanStackRouterRspack({
-          routesDirectory: "./src/routes",
-          enableRouteGeneration: true
-        }),
-      ]
-    }
-  },
+  // tools: {
+  //   rspack: {
+  //     plugins: [
+  //       TanStackRouterRspack({
+  //         routesDirectory: "./src/routes",
+  //         enableRouteGeneration: true
+  //       }),
+  //     ]
+  //   }
+  // },
   plugins: [
     pluginReact(),
     pluginModuleFederation({

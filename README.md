@@ -5,7 +5,7 @@
 
 <div align="center">
 
-<h1 style="font-size: 2.5rem; font-weight: bold;">Profile Module Template</h1>
+  <h1 style="font-size: 2.5rem; font-weight: bold;">Profile Module Template</h1>
 
   <p>
     <strong>A customizable profile module for easy integration with module federation</strong>
@@ -17,29 +17,19 @@
   <summary>Table of Contents</summary>
 
 - [Getting Started](#getting-started)
-  - [Cloning the Repository](#cloning-the-repository)
   - [Installing Dependencies](#installing-dependencies)
   - [Running the Development Server](#running-the-development-server)
   - [Customizing Your Profile](#customizing-your-profile)
 - [Module Federation Configuration](#module-federation-configuration)
 - [Theming and Styling](#theming-and-styling)
-- [API Integration](#api-integration)
 - [Building for Production](#building-for-production)
 - [Running Tests](#running-tests)
+- [Deploy to Web4](#deploy-to-web4)
 - [Contributing](#contributing)
 
 </details>
 
 ## Getting Started
-
-### Cloning the Repository
-
-To get started with your own profile module, clone this repository:
-
-```bash
-git clone https://github.com/your-username/profile-module-template.git
-cd profile-module-template
-```
 
 ### Installing Dependencies
 
@@ -65,35 +55,19 @@ The development server is configured with hot module replacement for a smooth de
 2. Update styles in `src/index.css` or use Tailwind classes directly in your components.
 3. Adjust the theme in `tailwind.config.js` to match your desired look and feel.
 
-## TypeScript Support
-
-This project is set up with TypeScript for improved type safety and developer experience:
-
-- The main Profile component is written in TypeScript (`src/components/Profile.tsx`).
-- Type definitions for the profile data structure are included in the component file.
-- The `rsbuild.config.ts` file is configured to work with TypeScript files.
-
 ## Module Federation Configuration
 
 This template is set up for module federation. The configuration can be found in `rsbuild.config.ts`. Key points:
 
 - The profile module is exposed as `"./Profile"`.
 - The exposed component is now a TypeScript file: `./src/components/Profile.tsx`.
-- Shared dependencies are configured to avoid version conflicts.
+- Shared dependencies are configured to utilize the dependencies of the host "gateway".
 
 ## Theming and Styling
 
 - This project uses Tailwind CSS for styling.
 - Customize the theme in `tailwind.config.js`.
 - Use CSS variables for easy theming across your application.
-
-## API Integration
-
-To integrate with different data sources:
-
-1. Create an API service in `src/services/api.ts`.
-2. Use React hooks to fetch and manage data in your components.
-3. Ensure to define proper TypeScript interfaces for your API responses.
 
 ## Building for Production
 
@@ -114,6 +88,34 @@ bun run test
 ```
 
 For more details on testing, see the [testing guide](./playwright-tests/README.md).
+
+## Deploy to web4
+
+1. Build the project
+
+```cmd
+pnpm run build
+```
+
+2. Create a web4 subaccount of your master account (this will be your domain).
+
+```cmd
+near account create-account fund-myself web4.MASTER_ACCOUNT.testnet '1 NEAR' autogenerate-new-keypair save-to-keychain sign-as MASTER_ACCOUNT.testnet network-config testnet sign-with-keychain send
+```
+
+Be sure to "Store the access key in legacy keychain"!
+
+3. Run web4-deploy to upload production bundle to nearfs and deploy it to a minimum-web4 contract to your account.
+
+```cmd
+npx github:vgrichina/web4-deploy dist web4.MASTER_ACCOUNT.testnet --deploy-contract --nearfs
+```
+
+Deploy should be accessible and your website accessible at:
+
+`testnet`: MASTER_ACCOUNT.testnet.page
+
+`mainnet`: MASTER_ACCOUNT.near.page
 
 ## Contributing
 

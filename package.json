@@ -15,9 +15,7 @@
     "build": "rsbuild build",
     "preview": "rsbuild preview",
     "fmt": "prettier --write '**/*.{js,jsx,ts,tsx,json}'",
-    "fmt:check": "prettier --check '**/*.{js,jsx,ts,tsx,json}'",
-    "test": "bunx playwright test",
-    "test:ui": "bunx playwright test --ui"
+    "fmt:check": "prettier --check '**/*.{js,jsx,ts,tsx,json}'"
   },
   "browserslist": {
     "production": [
@@ -38,11 +36,9 @@
   },
   "devDependencies": {
     "@module-federation/rsbuild-plugin": "^0.8.7",
-    "@playwright/test": "^1.46.1",
     "@rsbuild/core": "^1.2.3",
     "@rsbuild/plugin-node-polyfill": "^1.2.0",
     "@rsbuild/plugin-react": "^1.1.0",
-    "@tanstack/react-query-devtools": "^5.64.2",
     "@tanstack/react-router": "^1.97.0",
     "@tanstack/router-devtools": "^1.97.23",
     "@tanstack/router-plugin": "^1.69.1",
