@@ -23,7 +23,6 @@
 - [Module Federation Configuration](#module-federation-configuration)
 - [Theming and Styling](#theming-and-styling)
 - [Building for Production](#building-for-production)
-- [Running Tests](#running-tests)
 - [Deploy to Web4](#deploy-to-web4)
 - [Contributing](#contributing)
 
@@ -57,17 +56,11 @@ The development server is configured with hot module replacement for a smooth de
 
 ## Module Federation Configuration
 
-This template is set up for module federation. The configuration can be found in `rsbuild.config.ts`. Key points:
+This template is set up for [module federation](https://module-federation.io/). The configuration can be found in `rsbuild.config.ts`. Key points:
 
-- The profile module is exposed as `"./Profile"`.
-- The exposed component is now a TypeScript file: `./src/components/Profile.tsx`.
-- Shared dependencies are configured to utilize the dependencies of the host "gateway".
-
-## Theming and Styling
-
-- This project uses Tailwind CSS for styling.
-- Customize the theme in `tailwind.config.js`.
-- Use CSS variables for easy theming across your application.
+- The profile module is exposed as `"./Profile"`
+- It shares dependencies with the host/"gateway"
+- Feel free to install other packages and add components to the Profile, but do not modify [App](./src/App.tsx) or [bootstrap](./src/bootstrap.tsx).
 
 ## Building for Production
 
@@ -79,43 +72,32 @@ bun run build
 
 This will generate optimized files in the `dist` directory.
 
-## Running Tests
-
-Execute the test suite with:
-
-```bash
-bun run test
-```
-
-For more details on testing, see the [testing guide](./playwright-tests/README.md).
-
 ## Deploy to web4
 
-1. Build the project
+To deploy your profile to web4, make sure you have built the project, then:
 
-```cmd
-pnpm run build
+1. Run the deploy script:
+
+```bash
+bun run deploy
 ```
 
-2. Create a web4 subaccount of your master account (this will be your domain).
+2. Follow the prompts in the terminal:
 
-```cmd
-near account create-account fund-myself web4.MASTER_ACCOUNT.testnet '1 NEAR' autogenerate-new-keypair save-to-keychain sign-as MASTER_ACCOUNT.testnet network-config testnet sign-with-keychain send
-```
+   - Enter the network (mainnet/testnet)
+   - Enter your account name (e.g., root.near)
 
-Be sure to "Store the access key in legacy keychain"!
+The script will automatically:
 
-3. Run web4-deploy to upload production bundle to nearfs and deploy it to a minimum-web4 contract to your account.
+- Create a web4 subaccount if it doesn't exist
+- Deploy your profile to the web4 contract
 
-```cmd
-npx github:vgrichina/web4-deploy dist web4.MASTER_ACCOUNT.testnet --deploy-contract --nearfs
-```
+You will be prompted to sign transactions through [near-cli-rs](https://github.com/near/near-cli-rs)
 
-Deploy should be accessible and your website accessible at:
+After successful deployment, your website will be accessible at:
 
-`testnet`: MASTER_ACCOUNT.testnet.page
-
-`mainnet`: MASTER_ACCOUNT.near.page
+- Testnet: `ACCOUNT_NAME.testnet.page`
+- Mainnet: `ACCOUNT_NAME.near.page`
 
 ## Contributing
 

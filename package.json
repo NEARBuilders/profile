@@ -15,7 +15,8 @@
     "build": "rsbuild build",
     "preview": "rsbuild preview",
     "fmt": "prettier --write '**/*.{js,jsx,ts,tsx,json}'",
-    "fmt:check": "prettier --check '**/*.{js,jsx,ts,tsx,json}'"
+    "fmt:check": "prettier --check '**/*.{js,jsx,ts,tsx,json}'",
+    "deploy": "bun run --bun scripts/deploy.ts"
   },
   "browserslist": {
     "production": [
@@ -30,6 +31,8 @@
     ]
   },
   "dependencies": {
+    "@types/ora": "^3.2.0",
+    "ora": "^8.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.3"
