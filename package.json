@@ -31,7 +31,11 @@
     ]
   },
   "dependencies": {
+    "@near-wallet-selector/core": "^8.9.16",
+    "@near-wallet-selector/modal-ui": "^8.9.16",
+    "@near-wallet-selector/my-near-wallet": "^8.9.16",
     "@types/ora": "^3.2.0",
+    "near-api-js": "^5.0.1",
     "ora": "^8.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -40,7 +44,7 @@
   "devDependencies": {
     "@module-federation/rsbuild-plugin": "^0.8.7",
     "@rsbuild/core": "^1.2.3",
-    "@rsbuild/plugin-node-polyfill": "^1.2.0",
+    "@rsbuild/plugin-node-polyfill": "^1.3.0",
     "@rsbuild/plugin-react": "^1.1.0",
     "@tanstack/react-router": "^1.97.0",
     "@tanstack/router-devtools": "^1.97.23",

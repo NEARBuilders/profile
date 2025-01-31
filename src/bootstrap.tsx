@@ -3,6 +3,9 @@ import * as ReactDOMClient from "react-dom/client";
 import { Profile } from "./components/Profile";
 import "./index.css";
 import { getProfile } from "./lib/social";
+import { DevWrapper } from "./dev/DevWrapper";
+
+const isDevelopment = process.env.NODE_ENV === "development";
 
 const render = async () => {
   const root = document.getElementById("root");
@@ -15,7 +18,11 @@ const render = async () => {
       ReactDOMClient.createRoot(root).render(
         <React.StrictMode>
           {profile ? (
-            <Profile profile={profile} accountId={accountId} />
+            isDevelopment ? (
+              <DevWrapper profile={profile} accountId={accountId} />
+            ) : (
+              <Profile profile={profile} accountId={accountId} />
+            )
           ) : (
             <div>No profile found for {accountId}</div>
           )}
