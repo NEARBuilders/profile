@@ -19,6 +19,7 @@ export function DevWrapper({ accountId, profile: initialProfile }: DevWrapperPro
   const [selector, setSelector] = useState<WalletSelector | null>(null);
   const [walletModal, setWalletModal] = useState<any>(null);
   const [connectedId, setConnectedId] = useState<string | null>(null);
+  const [isDevToolsOpen, setIsDevToolsOpen] = useState(false);
 
   useEffect(() => {
     // Initialize wallet selector
@@ -57,12 +58,29 @@ export function DevWrapper({ accountId, profile: initialProfile }: DevWrapperPro
 
   const handleEdit = () => {
     setIsEditing(true);
+    setIsDevToolsOpen(false);
+  };
+
+  const toggleDevTools = () => {
+    setIsDevToolsOpen(!isDevToolsOpen);
   };
 
   return (
     <div className="relative min-h-screen">
-      {/* Development Controls */}
-      <div className="fixed right-4 top-4 z-50 flex gap-2">
+      {/* Dev Tools Toggle Button */}
+      <button
+        onClick={toggleDevTools}
+        className="fixed right-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-all hover:bg-gray-800"
+      >
+        ⚙️
+      </button>
+
+      {/* Dev Tools Panel */}
+      <div
+        className={`fixed right-4 top-16 z-50 flex flex-col gap-2 overflow-hidden transition-all duration-300 ${
+          isDevToolsOpen ? "h-auto opacity-100" : "h-0 opacity-0"
+        }`}
+      >
         {connectedId ? (
           <div className="rounded bg-green-500 px-4 py-2 text-white shadow">
             Connected: {connectedId}
