@@ -5,10 +5,10 @@
 
 <div align="center">
 
-  <h1 style="font-size: 2.5rem; font-weight: bold;">Profile Module Template</h1>
+  <h1 style="font-size: 2.5rem; font-weight: bold;">web4 profile template</h1>
 
   <p>
-    <strong>A customizable profile module for easy integration with module federation</strong>
+    <strong>customizable profile module for easy integration with module federation</strong>
   </p>
 
 </div>
@@ -32,17 +32,39 @@
 
 ### Installing Dependencies
 
-This project uses Bun as the package manager. Install the dependencies with:
+Install the dependencies using your preferred package manager:
 
 ```bash
+# Using npm
+npm install
+
+# Using yarn
+yarn install
+
+# Using pnpm
+pnpm install
+
+# Using bun
 bun install
 ```
+
+> Note: While you can use any package manager locally, the git workflows use bun.
 
 ### Running the Development Server
 
 Start the development server on `localhost:5170`:
 
 ```bash
+# Using npm
+npm run dev
+
+# Using yarn
+yarn dev
+
+# Using pnpm
+pnpm dev
+
+# Using bun
 bun run dev
 ```
 
@@ -67,6 +89,16 @@ This template is set up for [module federation](https://module-federation.io/). 
 To create a production build:
 
 ```bash
+# Using npm
+npm run build
+
+# Using yarn
+yarn build
+
+# Using pnpm
+pnpm build
+
+# Using bun
 bun run build
 ```
 
